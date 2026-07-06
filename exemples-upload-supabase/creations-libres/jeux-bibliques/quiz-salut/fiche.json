@@ -1,0 +1,14 @@
+{
+  "titre": "Quiz biblique sur le salut",
+  "description": "Un jeu interactif pour comprendre le salut en Jésus-Christ à travers des questions bibliques.",
+  "categorie": "jeux-bibliques",
+  "type": "jeu",
+  "niveau": "Facile",
+  "auteur": "Franck Cacharel GETCHOU",
+  "date": "2026-07-06",
+  "miniature": "miniature.svg",
+  "page": "index.html",
+  "publie": true,
+  "afficher_accueil": true,
+  "tags": ["salut", "Jésus-Christ", "quiz", "Bible"]
+}
