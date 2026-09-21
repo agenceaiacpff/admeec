@@ -1,2 +1,2 @@
-8ffd1d0010cf724e5fe48e03674fd40ad10c669347a32b99a5872f01ca54f4bb  dist/Entraide-Monde.apk
+dbd846bf2051e709994c71b374d900280a1b6ed1a468c3fa10c9c480831c75ef  dist/Entraide-Monde.apk
 73d53c5b8d46bd44245c57322d50b77e057da16f8558ad66b6512a3da14f60eb  dist/Entraide-Monde-PlayStore-unsigned.aab
