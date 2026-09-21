@@ -1,0 +1,3 @@
+9c81808ac7b4e5e770e4f5348e04cb9a0de3797b2ee0a5da5b629c50a06eef90  pwa-official-icons/app-icon-192.png
+a09176e46ecfeafeb6bf3ae8a17f0efbadce967a5cf55679c186aad31bbfd4cb  pwa-official-icons/app-icon-512.png
+a09176e46ecfeafeb6bf3ae8a17f0efbadce967a5cf55679c186aad31bbfd4cb  pwa-official-icons/app-icon-maskable-512.png
