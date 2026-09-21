@@ -1,0 +1,155 @@
+name: Entraide Monde Live PWA Test
+
+on:
+  push:
+    branches: [entraide-android-runner-probe]
+    paths:
+      - ".github/workflows/entraide-pwa-live-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  live-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify production PWA resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p pwa-live-test
+          URL="https://entraide.aiac-cm.org"
+          for path in / /manifest.webmanifest /sw.js /app-icon-192.png /app-icon-512.png /app-icon-maskable-512.png; do
+            echo "=== $path ===" | tee -a pwa-live-test/http.txt
+            curl -fsSIL "$URL$path" | tee -a pwa-live-test/http.txt
+          done
+          curl -fsSL "$URL/manifest.webmanifest" -o pwa-live-test/manifest.webmanifest
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          import io, urllib.request
+
+          m=json.loads(Path("pwa-live-test/manifest.webmanifest").read_text())
+          required=["name","start_url","display","icons"]
+          missing=[k for k in required if not m.get(k)]
+          if missing: raise SystemExit("Missing manifest keys: "+",".join(missing))
+          sizes={i.get("sizes") for i in m["icons"]}
+          if "192x192" not in sizes or "512x512" not in sizes:
+              raise SystemExit("Missing required 192x192 or 512x512 icons")
+          print(json.dumps({"manifest":m},ensure_ascii=False,indent=2))
+          PY
+
+      - name: Install Chrome probe dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          echo "Chrome: $CHROME_BIN"
+          "$CHROME_BIN" --version
+          npm --version
+          npm install --no-save puppeteer-core@24
+
+      - name: Test installability in real Chromium
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > pwa-live-test/probe.cjs <<'NODE'
+          const fs=require("fs");
+          const puppeteer=require("puppeteer-core");
+
+          (async()=>{
+            const url="https://entraide.aiac-cm.org/";
+            const browser=await puppeteer.launch({
+              headless:true,
+              executablePath:process.env.CHROME_BIN,
+              args:["--no-sandbox","--disable-dev-shm-usage"]
+            });
+            const page=await browser.newPage();
+            const consoleLines=[];
+            page.on("console",m=>consoleLines.push(m.type()+": "+m.text()));
+
+            await page.evaluateOnNewDocument(()=>{
+              window.__pwaPromptSeen=false;
+              window.addEventListener("beforeinstallprompt",e=>{
+                window.__pwaPromptSeen=true;
+                window.__pwaPromptPlatform=(e.platforms||[]).join(",");
+              });
+            });
+
+            const response=await page.goto(url,{waitUntil:"networkidle2",timeout:120000});
+            await new Promise(r=>setTimeout(r,5000));
+
+            const client=await page.target().createCDPSession();
+            const manifest=await client.send("Page.getAppManifest");
+            let installability;
+            try { installability=await client.send("Page.getInstallabilityErrors"); }
+            catch(e){ installability={unsupported:true,error:String(e)}; }
+
+            const dom=await page.evaluate(async()=>{
+              const manifestLink=document.querySelector('link[rel="manifest"]')?.href||null;
+              let manifestFetch=null;
+              if(manifestLink){
+                try{
+                  const r=await fetch(manifestLink,{cache:"no-store"});
+                  manifestFetch={status:r.status,contentType:r.headers.get("content-type"),text:(await r.text()).slice(0,5000)};
+                }catch(e){manifestFetch={error:String(e)}}
+              }
+              const sw=await navigator.serviceWorker?.getRegistration?.("/");
+              return {
+                href:location.href,
+                manifestLink,
+                manifestFetch,
+                serviceWorkerSupported:"serviceWorker" in navigator,
+                serviceWorkerRegistration:Boolean(sw),
+                serviceWorkerController:Boolean(navigator.serviceWorker?.controller),
+                beforeInstallPromptSeen:Boolean(window.__pwaPromptSeen),
+                installBarVisible:Array.from(document.querySelectorAll("aside")).some(el=>/Installer Entraide Monde sur cet ordinateur/.test(el.textContent||"")),
+                bodyHasInstallText:/Installer Entraide Monde sur cet ordinateur/.test(document.body.innerText)
+              };
+            });
+
+            const result={
+              testedAt:new Date().toISOString(),
+              url,
+              httpStatus:response?.status()||null,
+              chrome:await browser.version(),
+              manifest:{
+                url:manifest.url,
+                errors:manifest.errors,
+                data:manifest.data
+              },
+              installability,
+              dom,
+              console:consoleLines
+            };
+            fs.writeFileSync("pwa-live-test/result.json",JSON.stringify(result,null,2));
+            console.log(JSON.stringify(result,null,2));
+            await page.screenshot({path:"pwa-live-test/page.png",fullPage:true});
+            await browser.close();
+
+            if(result.httpStatus!==200) process.exit(10);
+            if(result.manifest.errors && result.manifest.errors.length) process.exit(11);
+            if(Array.isArray(result.installability.installabilityErrors) && result.installability.installabilityErrors.length) process.exit(12);
+            if(!result.dom.serviceWorkerRegistration) process.exit(13);
+          })().catch(e=>{console.error(e);process.exit(99)});
+          NODE
+          node pwa-live-test/probe.cjs
+
+      - name: Publish live test result
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pwa-live-test/
+          if ! git diff --cached --quiet; then
+            git commit -m "test: publish Entraide Monde live PWA result [skip ci]"
+            git push origin HEAD:entraide-android-runner-probe
+          fi
