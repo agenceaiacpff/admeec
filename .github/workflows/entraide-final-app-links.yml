@@ -1656,6 +1656,16 @@ jobs:
           gradle --no-daemon :app:assembleDebug :app:assembleRelease :app:bundleRelease
           mkdir -p ../dist
           BUILD_TOOLS="$ANDROID_HOME/build-tools/35.0.0"
+          mkdir -p "$HOME/.android"
+          keytool -genkeypair -noprompt \
+            -keystore "$HOME/.android/debug.keystore" \
+            -storepass android \
+            -alias androiddebugkey \
+            -keypass android \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -dname "CN=Entraide Monde Android,O=AIAC,C=CM"
           UNSIGNED_APK="app/build/outputs/apk/release/app-release-unsigned.apk"
           ALIGNED_APK="../dist/Entraide-Monde-aligned-unsigned.apk"
           "$BUILD_TOOLS/zipalign" -f -p 4 "$UNSIGNED_APK" "$ALIGNED_APK"
