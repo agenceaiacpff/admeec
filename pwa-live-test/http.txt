@@ -1,0 +1,85 @@
+=== / ===
+HTTP/2 200 
+date: Mon, 21 Sep 2026 19:13:46 GMT
+content-type: text/html; charset=utf-8
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+strict-transport-security: max-age=63072000; includeSubDomains; preload
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://esm.sh; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data: https:; media-src 'self' blob: https://*.supabase.co; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://tiles.openfreemap.org https://services.arcgisonline.com https://router.project-osrm.org; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests
+cross-origin-opener-policy: same-origin
+cross-origin-resource-policy: same-origin
+permissions-policy: camera=(self), microphone=(self), geolocation=(self), payment=()
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-frame-options: DENY
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=YbX38kQxbeSDnVLaqDoB5zK5HbfPuDIPiDoGF86HxElrM5YQpmEayu21vBSSIC%2FNU%2BXCPKOkXo%2Bgvq6e70VnyepS1FywDlaWk3z%2BN5rlczNFSuYmptksZYsdIZBFhAAxxybl%2Fugt4Q%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a3eb63908e6b8abe-EWR
+alt-svc: h3=":443"; ma=86400
+
+=== /manifest.webmanifest ===
+HTTP/2 200 
+date: Mon, 21 Sep 2026 19:13:46 GMT
+content-type: application/manifest+json
+cf-cache-status: HIT
+cache-control: public, max-age=0, must-revalidate
+etag: "c11581a53037d3aa178603f36bfc3718"
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=GR8FOq9ILbjz0J7gb%2BFdylWFZJSbcr228EWutEpL7PVI0e53l0H4xvjqAC3ReGGgdgCUuFwwgYO9QrCKpt3B33Zqx6hgTp1wsvK25Cv0nhubn78o2M4gfhSjXNgiDBLrXlW6uqy5pw%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a3eb639c2d1d4400-EWR
+alt-svc: h3=":443"; ma=86400
+
+=== /sw.js ===
+HTTP/2 200 
+date: Mon, 21 Sep 2026 19:13:47 GMT
+content-type: text/javascript
+cf-cache-status: HIT
+cache-control: public, max-age=0, must-revalidate
+etag: "ee253f6df8bef560d0bdb4f260f34c02"
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=p%2BNvNN0WwUOnl3Ni1H4IeVtsMtj88CA6yJYOgkcOF%2FxF7yyuIrPSmdinZYELdUMEI0izMteTgX9O3j7RkV71iT7lTMj3sd%2FTqF1Oar%2BsF5FwXXYGvP4tIMnH%2BiwSaLwIFUn6omrncg%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a3eb639e69c9e1c4-MRS
+alt-svc: h3=":443"; ma=86400
+
+=== /app-icon-192.png ===
+HTTP/2 200 
+date: Mon, 21 Sep 2026 19:13:47 GMT
+content-type: image/png
+cf-cache-status: MISS
+cache-control: public, max-age=0, must-revalidate
+etag: "54c00073ca9f56f2fe8f0fd312e4f70b"
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=FHjGSB5Ddwj5fuzWSZvHAqEn0aFRdccDj1FRn%2FlESlzvXHn2pfZDeoD0jeEdmPDtoLOhBc%2FjF0q9vBMpCGeVK4WS672RDB92%2BKbGq48%2Bu6TSSrsROnG8HgtGvfP6y9zvGRgVRJL7jQ%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a3eb639f580d64b8-EWR
+alt-svc: h3=":443"; ma=86400
+
+=== /app-icon-512.png ===
+HTTP/2 200 
+date: Mon, 21 Sep 2026 19:13:47 GMT
+content-type: image/png
+cf-cache-status: MISS
+cache-control: public, max-age=0, must-revalidate
+etag: "608d902c8f9517562611806bd9934b85"
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=IoRM8xRIGnnsTE6SmJFQgG8D6tbyDIiycgEG%2F82xU79iwMmfYH0EXF7v5W%2BBsEEMTBayIS5FJhjhjhXWcdllT8WN%2BxVcDdek6Sc6lX7nnCOVLDYTfAzQ8ewVKWRj%2FqWYEuavrxApXA%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a3eb63a0a9f68bfe-ATL
+alt-svc: h3=":443"; ma=86400
+
+=== /app-icon-maskable-512.png ===
+HTTP/2 200 
+date: Mon, 21 Sep 2026 19:13:47 GMT
+content-type: image/png
+cf-cache-status: HIT
+cache-control: public, max-age=0, must-revalidate
+etag: "608d902c8f9517562611806bd9934b85"
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=hcbcJmjUDROyPKIQ7wBUf3xy29Ncx%2BVB7jba6vwlVtlSlrd9bnxgOa5Q2nW1if0q3D27h%2BEyhttvZ1khWlcjUpr2PCuZwXajRd1F0fVQNE9Wtzl7dZwOq0T1ILq880CpstEwP3A0Bw%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a3eb63a1f84542a3-EWR
+alt-svc: h3=":443"; ma=86400
+
