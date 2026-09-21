@@ -1,0 +1,85 @@
+=== / ===
+HTTP/2 200 
+date: Mon, 21 Sep 2026 19:16:15 GMT
+content-type: text/html; charset=utf-8
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+strict-transport-security: max-age=63072000; includeSubDomains; preload
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://esm.sh; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data: https:; media-src 'self' blob: https://*.supabase.co; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://tiles.openfreemap.org https://services.arcgisonline.com https://router.project-osrm.org; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests
+cross-origin-opener-policy: same-origin
+cross-origin-resource-policy: same-origin
+permissions-policy: camera=(self), microphone=(self), geolocation=(self), payment=()
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-frame-options: DENY
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=eNLs6NwWM4Ej%2FTgZGJhOzqgSXfnq1bMKhorh40I%2BxkSnCkJhOC8f5zEh7aZbae4mc5TuJkhgtutjPDQj6%2Bd9QWDV9Li0bA2MHnfmtmYzcNO7yZcsyBMq3q1oZRKf4i768x0Q2P8eeA%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a3eb6735581e4d21-SJC
+alt-svc: h3=":443"; ma=86400
+
+=== /manifest.webmanifest ===
+HTTP/2 200 
+date: Mon, 21 Sep 2026 19:16:15 GMT
+content-type: application/manifest+json
+cf-cache-status: HIT
+cache-control: public, max-age=0, must-revalidate
+etag: "c11581a53037d3aa178603f36bfc3718"
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=SvSnItvacJNKSuGWN8Ju6JnnlczQjoI3CuxPZiQu0GRWvtVHj9mvPbq%2BgO7pAI4PuXtAkzPKdHh4ISoBIA4LH8UtUxn8si7Tf6d3k4amNNtqj6dQwjDv%2FoL20XZYlrPD87wQ4sMv8g%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a3eb673a1f5afdda-SJC
+alt-svc: h3=":443"; ma=86400
+
+=== /sw.js ===
+HTTP/2 200 
+date: Mon, 21 Sep 2026 19:16:15 GMT
+content-type: text/javascript
+cf-cache-status: MISS
+cache-control: public, max-age=0, must-revalidate
+etag: "ee253f6df8bef560d0bdb4f260f34c02"
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Gh6MFWbGFYWSfM1ioD0ccJElzcgWSd51DerBIaLdLYDxjQC7S7llkQu3arLV%2Fk1uKRQYcYUX12drwvT2%2BAS72Kg8h1CUlBQ%2FE%2F%2Bv45Sy5qeT75QJrxluw7BA%2BcTKduIqAYoDdNMSpQ%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a3eb673acb9e23fd-SJC
+alt-svc: h3=":443"; ma=86400
+
+=== /app-icon-192.png ===
+HTTP/2 200 
+date: Mon, 21 Sep 2026 19:16:15 GMT
+content-type: image/png
+cf-cache-status: HIT
+cache-control: public, max-age=0, must-revalidate
+etag: "54c00073ca9f56f2fe8f0fd312e4f70b"
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=O49g3Qh%2FwbA5gCdhxH3GabtaFuE688Im%2B%2BYYjyeXXK7qd6%2Fg%2BSNVfpEQHqjlXzIIoeee9MF11yaNb459fhTX1GKPQTzaOm2hUb4su67Ieb%2Bd77KeG3m9Awer2gPE8yCsmAp4MJJmjA%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a3eb673be8a02599-SJC
+alt-svc: h3=":443"; ma=86400
+
+=== /app-icon-512.png ===
+HTTP/2 200 
+date: Mon, 21 Sep 2026 19:16:15 GMT
+content-type: image/png
+cf-cache-status: MISS
+cache-control: public, max-age=0, must-revalidate
+etag: "608d902c8f9517562611806bd9934b85"
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=7Aqhw1oWQ91C7GukCQDZV5SpQLelNjv%2FWETL8gqZKxLdLJeD4t7WtFcvhp%2F4hwUSZ%2BWLW65vXembQX3NXI0veIvfNgLGOYO8%2BX5WaGP%2FPL4Vh29TaHcuvuWFwsrWOGBpXuZ1abPc5A%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a3eb673c9e450a83-SJC
+alt-svc: h3=":443"; ma=86400
+
+=== /app-icon-maskable-512.png ===
+HTTP/2 200 
+date: Mon, 21 Sep 2026 19:16:15 GMT
+content-type: image/png
+cf-cache-status: HIT
+cache-control: public, max-age=0, must-revalidate
+etag: "608d902c8f9517562611806bd9934b85"
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=%2FI4hR795cuzpU6gjDMTP2e7cz5pJnDPpIpKCAk7PZJyg7Oqowd33qTJZjEmdexm1o6aJT2NfFp8LLL6gtCkCIID4qp8sxtres2djZVibmJI6ijIFM54j%2FG7w0bx7L3qtuDHyyyv6eA%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a3eb673dac4e9452-SJC
+alt-svc: h3=":443"; ma=86400
+

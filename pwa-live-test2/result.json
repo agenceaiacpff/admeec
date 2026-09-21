@@ -1,0 +1,26 @@
+{
+  "testedAt": "2026-09-21T19:17:02.320Z",
+  "httpStatus": 200,
+  "chrome": "Chrome/152.0.7977.82",
+  "manifest": {
+    "url": "https://entraide.aiac-cm.org/manifest.webmanifest?v=entraide-brand-20260921b",
+    "errors": [],
+    "data": "{\n  \"id\": \"/\",\n  \"name\": \"Entraide Monde\",\n  \"short_name\": \"Entraide\",\n  \"description\": \"Plateforme mondiale d’entraide, de dons et de solidarité.\",\n  \"start_url\": \"/\",\n  \"scope\": \"/\",\n  \"display\": \"standalone\",\n  \"display_override\": [\"standalone\", \"minimal-ui\"],\n  \"background_color\": \"#f4f7f5\",\n  \"theme_color\": \"#35104f\",\n  \"lang\": \"fr\",\n  \"orientation\": \"any\",\n  \"prefer_related_applications\": false,\n  \"icons\": [\n    {\n      \"src\": \"/app-icon-192.png?v=entraide-brand-20260921b\",\n      \"sizes\": \"192x192\",\n      \"type\": \"image/png\",\n      \"purpose\": \"any\"\n    },\n    {\n      \"src\": \"/app-icon-512.png?v=entraide-brand-20260921b\",\n      \"sizes\": \"512x512\",\n      \"type\": \"image/png\",\n      \"purpose\": \"any\"\n    },\n    {\n      \"src\": \"/app-icon-maskable-512.png?v=entraide-brand-20260921b\",\n      \"sizes\": \"512x512\",\n      \"type\": \"image/png\",\n      \"purpose\": \"maskable\"\n    }\n  ],\n  \"shortcuts\": [\n    {\n      \"name\": \"Offres\",\n      \"short_name\": \"Offres\",\n      \"url\": \"/offers\"\n    },\n    {\n      \"name\": \"Mes activités\",\n      \"short_name\": \"Activités\",\n      \"url\": \"/dashboard\"\n    },\n    {\n      \"name\": \"Notifications\",\n      \"short_name\": \"Alertes\",\n      \"url\": \"/notifications\"\n    }\n  ]\n}\n"
+  },
+  "installability": {
+    "installabilityErrors": []
+  },
+  "dom": {
+    "href": "https://entraide.aiac-cm.org/",
+    "manifestLink": "https://entraide.aiac-cm.org/manifest.webmanifest?v=entraide-brand-20260921b",
+    "serviceWorkerSupported": true,
+    "serviceWorkerRegistration": true,
+    "serviceWorkerController": true,
+    "beforeInstallPromptSeen": true,
+    "installBarVisible": true
+  },
+  "console": [
+    "error: Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' https://esm.sh\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+    "info: Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner."
+  ]
+}
