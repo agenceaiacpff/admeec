@@ -4,7 +4,7 @@ on:
     branches: [entraide-android-runner-probe]
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -103,6 +103,20 @@ jobs:
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs dist/Entraide-Monde.apk
           sha256sum dist/Entraide-Monde.apk dist/Entraide-Monde-PlayStore-unsigned.aab | tee dist/SHA256SUMS.txt
           ls -lh dist
+      - name: Publish exact signed build for private transfer
+        run: |
+          mkdir -p published-final
+          cp dist/Entraide-Monde.apk published-final/Entraide-Monde.apk
+          cp dist/Entraide-Monde-PlayStore-unsigned.aab published-final/Entraide-Monde-PlayStore-unsigned.aab
+          cp dist/SHA256SUMS.txt published-final/SHA256SUMS.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add published-final/
+          if ! git diff --cached --quiet; then
+            git commit -m "build: publish exact Entraide App Links binaries [skip ci]"
+            git push origin HEAD:entraide-android-runner-probe
+          fi
+
       - uses: actions/upload-artifact@v4
         with:
           name: entraide-monde-final-app-links
