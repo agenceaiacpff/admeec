@@ -1,0 +1,64 @@
+name: Entraide Monde PWA Icon Builder
+
+on:
+  push:
+    branches: [entraide-android-runner-probe]
+    paths:
+      - ".github/workflows/entraide-pwa-icon-builder.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-icons:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract official logo from verified APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          ICON_PATH="$(grep -m1 "application-icon-160:" published-final-v104/aapt-badging.txt | sed -E "s/.*'([^']+)'.*/\1/")"
+          test -n "$ICON_PATH"
+          echo "APK icon path: $ICON_PATH"
+          mkdir -p pwa-official-icons
+          unzip -p published-final-v104/Entraide-Monde.apk "$ICON_PATH" > pwa-official-icons/official-source.jpg
+          test -s pwa-official-icons/official-source.jpg
+          file pwa-official-icons/official-source.jpg
+
+      - name: Generate installable PNG icons from official logo
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+
+          src=Path("pwa-official-icons/official-source.jpg")
+          im=Image.open(src).convert("RGBA")
+          if im.size != (512,512):
+              raise SystemExit(f"Unexpected official logo size: {im.size}")
+
+          im.resize((192,192),Image.Resampling.LANCZOS).save("pwa-official-icons/app-icon-192.png","PNG",optimize=True)
+          im.save("pwa-official-icons/app-icon-512.png","PNG",optimize=True)
+          im.save("pwa-official-icons/app-icon-maskable-512.png","PNG",optimize=True)
+
+          for p in ["app-icon-192.png","app-icon-512.png","app-icon-maskable-512.png"]:
+              q=Image.open(Path("pwa-official-icons")/p)
+              print(p, q.size, q.mode)
+          PY
+          sha256sum pwa-official-icons/app-icon-*.png | tee pwa-official-icons/SHA256SUMS.txt
+
+      - name: Publish generated PWA icons
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pwa-official-icons/
+          git commit -m "build: publish official Entraide Monde PWA PNG icons [skip ci]"
+          git push origin HEAD:entraide-android-runner-probe
