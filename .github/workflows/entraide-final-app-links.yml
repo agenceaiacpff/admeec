@@ -1694,8 +1694,7 @@ jobs:
           CERT_COLON="$(printf '%s' "$CERT_HEX" | sed 's/../&:/g;s/:$//')"
           printf '%s\n' "$CERT_COLON" > dist/CERT_FINGERPRINT_SHA256.txt
           sha256sum dist/Entraide-Monde.apk dist/Entraide-Monde-PlayStore-unsigned.aab | tee dist/SHA256SUMS.txt
-          unzip -l dist/Entraide-Monde.apk > dist/apk-listing.txt
-          grep -q 'res/drawable' dist/apk-listing.txt
+          grep -q "application-icon-160:" dist/aapt-badging.txt
           ls -lh dist
 
       - name: Publish verified 1.0.4 binaries
