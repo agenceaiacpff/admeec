@@ -1653,9 +1653,20 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          gradle --no-daemon :app:assembleDebug :app:bundleRelease
+          gradle --no-daemon :app:assembleDebug :app:assembleRelease :app:bundleRelease
           mkdir -p ../dist
-          cp app/build/outputs/apk/debug/app-debug.apk ../dist/Entraide-Monde.apk
+          BUILD_TOOLS="$ANDROID_HOME/build-tools/35.0.0"
+          UNSIGNED_APK="app/build/outputs/apk/release/app-release-unsigned.apk"
+          ALIGNED_APK="../dist/Entraide-Monde-aligned-unsigned.apk"
+          "$BUILD_TOOLS/zipalign" -f -p 4 "$UNSIGNED_APK" "$ALIGNED_APK"
+          "$BUILD_TOOLS/apksigner" sign \
+            --ks "$HOME/.android/debug.keystore" \
+            --ks-key-alias androiddebugkey \
+            --ks-pass pass:android \
+            --key-pass pass:android \
+            --out ../dist/Entraide-Monde.apk \
+            "$ALIGNED_APK"
+          rm -f "$ALIGNED_APK"
           cp app/build/outputs/bundle/release/app-release.aab ../dist/Entraide-Monde-PlayStore-unsigned.aab
 
       - name: Verify version identity logo and signature
@@ -1667,7 +1678,7 @@ jobs:
           "$AAPT" dump badging dist/Entraide-Monde.apk | tee dist/aapt-badging.txt
           grep -q "package: name='org.aiac.entraidemonde'" dist/aapt-badging.txt
           grep -q "versionCode='4'" dist/aapt-badging.txt
-          grep -q "versionName='1.0.4-test'" dist/aapt-badging.txt
+          grep -q "versionName='1.0.4'" dist/aapt-badging.txt
           "$APKSIGNER" verify --verbose --print-certs dist/Entraide-Monde.apk | tee dist/apksigner.txt
           CERT_HEX="$(grep -i 'Signer #1 certificate SHA-256 digest:' dist/apksigner.txt | head -1 | sed 's/.*: //' | tr '[:lower:]' '[:upper:]')"
           CERT_COLON="$(printf '%s' "$CERT_HEX" | sed 's/../&:/g;s/:$//')"
